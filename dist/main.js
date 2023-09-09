@@ -16,23 +16,23 @@ if (localStorage.getItem("theme") === "dark") {
   switchTheme.checked = true;
   document.documentElement.classList.add("dark");
   bgImage.className =
-    "bg-[url(../todo-app-main/images/bg-desktop-dark.jpg)] bg-cover pb-24 pt-16";
+    "bg-[url(images/bg-desktop-dark.jpg)] bg-cover pb-24 pt-16";
 } else {
   switchTheme.checked = false;
   document.documentElement.classList.remove("dark");
   bgImage.className =
-    "bg-[url(../todo-app-main/images/bg-desktop-light.jpg)] bg-cover pb-24 pt-16";
+    "bg-[url(images/bg-desktop-light.jpg)] bg-cover pb-24 pt-16";
 }
 switchTheme.addEventListener("change", () => {
   if (switchTheme.checked == true) {
     document.documentElement.classList.add("dark");
     bgImage.className =
-      "bg-[url(../todo-app-main/images/bg-desktop-dark.jpg)] bg-cover pb-24 pt-16";
+      "bg-[url(images/bg-desktop-dark.jpg)] bg-cover pb-24 pt-16";
     localStorage.setItem("theme", "dark");
   } else {
     document.documentElement.classList.remove("dark");
     bgImage.className =
-      "bg-[url(../todo-app-main/images/bg-desktop-light.jpg)] bg-cover pb-24 pt-16";
+      "bg-[url(images/bg-desktop-light.jpg)] bg-cover pb-24 pt-16";
     localStorage.setItem("theme", "light");
   }
 });
@@ -65,10 +65,15 @@ addBtn.addEventListener("click", function () {
 function createItems(todo) {
   const todoLi = document.createElement("li");
   const crossIcon = document.createElement("img");
-  crossIcon.setAttribute("src", "../todo-app-main/images/icon-cross.svg");
+  crossIcon.setAttribute("src", "images/icon-cross.svg");
   crossIcon.className = "hidden group-hover:block ";
   var removeBtn = document.createElement("button");
   removeBtn.setAttribute("id", "delete-btn");
+  removeBtn.addEventListener("click", function () {
+    console.log(todoArr);
+    parentElement.remove();
+    deleteEle(todo);
+  });
   const infoDiv = document.createElement("div");
   infoDiv.className = "flex gap-8 items-center";
   todoLi.className =
@@ -89,11 +94,6 @@ function createItems(todo) {
   todoLi.appendChild(infoDiv);
   todoLi.appendChild(removeBtn);
   todoUl.appendChild(todoLi);
-  removeBtn.addEventListener("click", function () {
-    console.log(todoArr);
-    this.parentElement.remove();
-    deleteEle(todo);
-  });
 }
 function deleteEle(task) {
   todoArr = JSON.parse(localStorage.getItem("task"));

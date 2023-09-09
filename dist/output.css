@@ -1242,6 +1242,14 @@ select {
   background-image: url(../todo-app-main/images/bg-desktop-light.jpg);
 }
 
+.bg-\[url\(images\/bg-desktop-light\.jpg\)\] {
+  background-image: url(images/bg-desktop-light.jpg);
+}
+
+.bg-\[url\(images\/bg-desktop-dark\.jpg\)\] {
+  background-image: url(images/bg-desktop-dark.jpg);
+}
+
 .bg-cover {
   background-size: cover;
 }
