@@ -7,11 +7,14 @@ const root = document.querySelector(":root");
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
 const addBtn = document.getElementById("add-btn");
 let todoObj = {
-  iD: new Date(),
+  iD: Date.now(),
   todoName: "",
   completed: false,
 };
 let todoArr = [];
+if (systemTheme) {
+  localStorage.setItem("theme", "dark");
+}
 if (localStorage.getItem("theme") === "dark") {
   switchTheme.checked = true;
   document.documentElement.classList.add("dark");
@@ -51,15 +54,15 @@ addBtn.addEventListener("click", function () {
   if (addInput.value != "") {
     todoObj = {
       todoName: addInput.value,
-      iD: new Date(),
+      iD: Date.now(),
       completed: false,
     };
     if (completeCheck.checked == true) {
       todoObj.completed = true;
     }
-    createItems(todoObj);
     todoArr.push(todoObj);
     localStorage.setItem("task", JSON.stringify(todoArr));
+    createItems(todoObj);
   }
 });
 function createItems(todo) {
@@ -70,8 +73,7 @@ function createItems(todo) {
   var removeBtn = document.createElement("button");
   removeBtn.setAttribute("id", "delete-btn");
   removeBtn.addEventListener("click", function () {
-    console.log(todoArr);
-    parentElement.remove();
+    this.parentElement.remove();
     deleteEle(todo);
   });
   const infoDiv = document.createElement("div");
@@ -97,8 +99,8 @@ function createItems(todo) {
 }
 function deleteEle(task) {
   todoArr = JSON.parse(localStorage.getItem("task"));
-  console.log(todoArr);
   const element = todoArr.find((element) => element.iD === task.iD);
   const indexOfTask = todoArr.indexOf(element);
-  console.log(indexOfTask);
+  todoArr.splice(indexOfTask, 1);
+  localStorage.setItem("task", JSON.stringify(todoArr));
 }
