@@ -34,10 +34,10 @@
   </head>
   <body class="dark:bg-[#161722]">
     <div
-      class="bg-[url(images/bg-desktop-light.jpg)] bg-cover pb-24 pt-16"
+      class="lg:bg-[url(images/bg-desktop-light.jpg)] bg-[url(images/bg-mobile-light.jpg)] bg-cover pb-24 pt-16"
       id="bg-image"
     >
-      <div class="container flex justify-between pb-11">
+      <div class="container sm:container flex justify-between pb-11">
         <span class="tracking-[1rem] text-5xl font-bold text-white">TODO</span>
         <label class="swap swap-rotate">
           <!-- this hidden checkbox controls the state -->
@@ -66,17 +66,17 @@
           </svg>
         </label>
       </div>
-      <div class="container">
+      <div class="container sm:container">
         <div
-          class="h-12 w-full px-8 flex items-center gap-4 bg-white dark:bg-[#25273C] rounded-lg"
+          class="lg:h-12 w-full lg:px-8 flex items-center justify-center lg:gap-4 gap-3 bg-white dark:bg-[#25273C] rounded-lg"
         >
           <input
             type="checkbox"
-            class="h-6 w-6 rounded-full text-teal-500 focus:ring-transparent focus:ring-offset-0 bg-transparent cursor-pointer"
+            class="lg:h-6 lg:w-6 rounded-full text-teal-500 focus:ring-transparent focus:ring-offset-0 bg-transparent cursor-pointer"
             id="Complete-check"
           />
           <input
-            class="w-full bg-transparent outline-none dark:text-gray-300 text-black placeholder:text-slate-400 font-medium border-none focus:ring-0"
+            class="lg:w-full bg-transparent outline-none dark:text-gray-300 text-black placeholder:text-slate-400 font-medium border-none focus:ring-0"
             type="text"
             placeholder="Create a new todo..."
             id="add-task-input"
@@ -88,8 +88,18 @@
         </div>
       </div>
     </div>
-    <div class="container">
-      <ul class="-translate-y-12 shadow-lg rounded-lg" id="todo-ul"></ul>
+    <div class="lg:container container px-4 -translate-y-12">
+      <ul class="shadow-lg rounded-lg lg:p-0 pb-3" id="todo-ul"></ul>
+      <div
+        id="toggle-div"
+        class="container dark:bg-[#25273C] lg:hidden flex justify-center gap-4 text-slate-400"
+      >
+        <button class="hover:text-white" id="mobile-all">All</button>
+        <button class="hover:text-white" id="mobile-active">Active</button>
+        <button class="hover:text-white" id="mobile-completed">
+          Completed
+        </button>
+      </div>
     </div>
 
     <!-- Add dynamic number -->
